@@ -1,0 +1,73 @@
+## Project: Shipment Log Database
+-- This project stores shipment information including file numbers, containers, consignees, vessels, dates and clients.
+  
+DROP DATABASE IF EXISTS `shipment_log`;
+CREATE DATABASE `shipment_log`;
+USE `shipment_log`;
+
+
+CREATE TABLE shipments (
+  file_no VARCHAR(20) NOT NULL,
+  consignee VARCHAR(100),
+  container_no VARCHAR(50),
+  bill_of_lading VARCHAR(100),
+  date_received DATE,
+  shipping_line VARCHAR(100),
+  vessel VARCHAR(50),
+  eta DATE,
+  PRIMARY KEY (file_no)
+);
+
+INSERT INTO shipments (file_no, consignee, container_no, bill_of_lading, date_received, shipping_line, vessel, eta)
+VALUES
+('TRT/001/2016', 'MR. CHARLES', 'IOAJ9837414', 'MEDU19487019', '2016-1-8', 'MSC', 'MSC FELIXSTOWE', '2016-1-29'),
+('TRT/002/2016', 'SEWECO',	'PCIU8646698', 'TAUO50286400', '2016-2-23', 'PIL', 'KOTA SAHABAT', '2016-4-18'),
+('TRT/003/2016', 'NATIONAL', 'ESDU4155379', 'EPIRCHNSH9006609', '2016-3-23', 'BFS', 'DERBYB', '2016-3-30'),
+('TRT/004/2016', 'F&P CARE', 'RFCU2284762', 'HLCU7812204AYUB3', '2016-4-18', 'HLC', 'ATHEN', '2016-4-20'),
+('TRT/005/2016', 'ABEL', 'TCNU56592838', 'NMBA24121022', '2016-4-30', 'ONE', 'KOTA', '2016-5-3'),
+('TRT/006/2016', 'JUVIAN GENERAL',	'EGHU3181800', '145599055607', '2016-5-7', 'MAE', 'IRENES SOUTHERN', '2016-5-1'),
+('TRT/007/2016', 'RANSSIE INTERNATIONAL', 'MRKU3398993','251653662', '2016-5-13', 'MAE', 'IRENES SOUTHERN', '2016-5-1'),
+('TRT/008/2016', 'ROYALE PROPERTY', 'CAT032008516', 'CBW2501LM022', '2016-6-6', 'MES', 'MV SPAR', '2016-7-6')
+;
+
+
+
+
+CREATE TABLE container_description (
+file_no VARCHAR(20) NOT NULL,
+consignee VARCHAR(100),
+container_no VARCHAR(50),
+standard_size VARCHAR(20),
+tons DECIMAL(10,2),
+container_type VARCHAR(20),
+yard_all VARCHAR(20),
+PRIMARY KEY (file_no));
+
+INSERT INTO container_description
+VALUES
+('TRT/001/2016', 'MR. CHARLES', 'IOAJ9837414', '20FT', '19.23', 'STANDARD', 'FENCE'),
+('TRT/002/2016', 'SEWECO',	'PCIU8646698', '40FT', '2.00', 'DG', 'YD051'),
+('TRT/003/2016', 'NATIONAL', 'ESDU4155379', '20FT', '29.24', 'STANDARD/DG', 'SK/13/C/1'),
+('TRT/004/2016', 'F&P CARE', 'RFCU2284762', '40FT', '20.89', 'DG', 'SL2/21/F/1'),
+('TRT/005/2016', 'ABEL', 'TCNU56592838', '20FT', '7.00', 'STANDARD', 'SK/33/E/1'),
+('TRT/006/2016', 'JUVIAN GENERAL',	'EGHU3181800', '40FT', '8.89', 'STANDARD', 'SN2/22/D/1'),
+('TRT/007/2016', 'RANSSIE INTERNATIONAL', 'MRKU3398993', '20FT','25.52', 'DG', 'SM/52/C/4'),
+('TRT/008/2016', 'ROYALE PROPERTY','CAT032008516', '1 UNIT', '30.00', 'RORO', 'SK2/07/F/3')
+;
+
+
+
+
+CREATE TABLE  client (file_no VARCHAR(20) NOT NULL, consignee VARCHAR(100), container_no VARCHAR(50), client VARCHAR(10), PRIMARY KEY (file_no));
+
+INSERT INTO client
+VALUES
+('TRT/001/2016', 'MR. CHARLES', 'IOAJ9837414', 'MK'),
+('TRT/002/2016', 'SEWECO',	'PCIU8646698', 'WAZIR'),
+('TRT/003/2016', 'NATIONAL', 'ESDU4155379', 'DESLER'),
+('TRT/004/2016', 'F&P CARE', 'RFCU2284762', 'JENNIFER'),
+('TRT/005/2016', 'ABEL', 'TCNU56592838', 'MK'),
+('TRT/006/2016', 'JUVIAN GENERAL',	'EGHU3181800', 'DESLER'),
+('TRT/007/2016', 'RANSSIE INTERNATIONAL', 'MRKU3398993', 'SALABED'),
+('TRT/008/2016', 'ROYALE PROPERTY','CAT032008516', 'GAMARA')
+;
